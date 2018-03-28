@@ -7,10 +7,8 @@ var bcrypt = require('bcrypt-nodejs');
 var cafeSchema = mongoose.Schema({
 
     cafe: {
-        icon: String,
         id: String,
-        name: String,
-        address: String
+        placeid: String
     }
 
 });

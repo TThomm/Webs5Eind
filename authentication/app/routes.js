@@ -1,6 +1,12 @@
 ﻿// app/routes.js
-module.exports = function (app, passport) {
+var express = require('express');
+var app = express();
 
+
+module.exports = function (app, passport) {
+    var raceroutes = require('./raceroutes.js');
+
+    app.use('/races', raceroutes);
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -66,15 +72,8 @@ module.exports = function (app, passport) {
         failureFlash: true // allow flash messages
     }));
 
-    app.get('/races', isLoggedIn, function (req, res) {
-        app.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDguC3IklgL1LwV828atdW1lJqbkcRQhpU&location=51.72512,%205.30323&radius=10000&type=cafe', isLoggedIn, function (req, res) {
+   
 
-        });
-
-
-
-        res.render('races.ejs');
-    });
 
 };
 
