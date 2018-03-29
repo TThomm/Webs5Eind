@@ -28,7 +28,6 @@ app.use(bodyParser()); // get information from html forms
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.engine('pug', require('pug').__express);
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 // required for passport
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret

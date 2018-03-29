@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<h3>Latitude: #{coordinatess.latitude} </h3>
+		<br>
+		<h3>Longitude: #{coordinatess.longitude} </h3>
+
+		<form action="/races/raceCreated", method = "POST">
+			<div>
+				<label for = "name"> Name: 
+				</label>
+				<input name = "name">
+				</input>
+			</div>
+			<br>
+			<div>
+				<label for = "starttime"> Starttime: 
+				</label>
+				<input name = "starttime">
+				</input>
+			</div>
+			<br>
+			<div>
+				<label for = "endTime"> EndTime: 
+				</label>
+				<input name = "endTime">
+				</input>
+			</div>
+			<br>
+			<div>
+				<% cafes.forEach(function(cafe) { %>
+					<label>Naam</label>
+					<input type="text" value="<%= cafe.name %>" />
+				<% }); %>
+				<!--<script>
+					var cafes = #{cafes};
+					cafes.forEach(function(element){
+						var label = document.createElement('label');
+						label.innerHTML = element.name;
+						var input = document.createElement('input');
+						input.type = "radio";
+						input.name = "cafe";
+						input.value = element.placeid;
+						document.body.appendChild(label);
+						document.body.appendChild(input);
+					});
+				</script>-->
+			</div>
+			<br>
+			<button type = "submit"> Create Race
+		</form>
+	</body>
+</html>

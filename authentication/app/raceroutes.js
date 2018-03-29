@@ -2,6 +2,7 @@
 var app = express();
 var router = express.Router();
 var request = require('request');
+var Cafe = require('../app/models/cafe');
 
 router.get('/', isLoggedIn, function (req, res) {
     
@@ -30,6 +31,7 @@ router.post('/create', isLoggedIn, function (req, res) {
     var coordinates = req.body
     var latitude = coordinates.latitude;
     var longitude = coordinates.longitude;
+    var caves;
 
     var call = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDguC3IklgL1LwV828atdW1lJqbkcRQhpU&location=" + latitude + "," + longitude + "&radius=2000&type=cafe";
  
@@ -37,14 +39,17 @@ router.post('/create', isLoggedIn, function (req, res) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         console.log('body:', body); // Print the HTML for the Google homepage.
-        getCafes(body);
+        caves = getCafes(body);
+
+        res.render('createRace.ejs', {
+            coordinatess: coordinates,
+            cafes: caves
+        });
     });
 
     
 
-    res.render('createRace.pug', {
-        coordinatess: coordinates
-    });
+    
 });
 
 
@@ -68,18 +73,30 @@ function isLoggedIn(req, res, next) {
 
 function getCafes(json) {
     obj = JSON.parse(json).results;
-
+    var caves = [];
     for (i = 0; i < obj.length; i++) {
         var name = obj[i].name;
         var placeid = obj[i].place_id;
         var rating = obj[i].rating;
         var adress = obj[i].vicinity
 
-        console.log(name);
-        console.log(placeid);
-        console.log(rating);
-        console.log(adress);
+        var newCafe = new Cafe();
+        newCafe.placeid = placeid;
+        newCafe.name = name;
+        newCafe.save(function (err, savedCafe) {
+            console.log('err', err);
+            console.log('savedCafe', savedCafe);
+        });
+
+        caves[i] = newCafe;
+
+
+        //console.log(name);
+        //console.log(placeid);
+        //console.log(rating);
+        //console.log(adress);
     }
+    return caves;
 
 }
 
