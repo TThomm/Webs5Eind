@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <style>
+        body            {   font-family: 'Raleway', sans-serif; }
+
+
+        .container      {  	width: 90vw; height: 90vh; margin: 0 auto; text-align: left; flex-direction: column; }
+        .race           {   transition: opacity 0.2s, border 0.2s; box-sizing: border-box; border: 0px solid #125368; border-style: solid; width: 100%; flex-shrink: 0; height: 10%; background-color: #fefbf9; display:flex; flex-direction: row;}
+        .horecatitle    {   width: 50%;  height: 100%; padding-left: 2%; border-right: 2px solid #4fa09c; box-sizing: border-box; display: flex; align-items: center;}
+        .participantcount{  width: 25%;  height: 100%; padding-left: 2%; border-right: 2px solid #4fa09c; box sizing: border-box; display: flex; align-items: center;}
+        .timeholder     {   width: 25%;  height: 100%; flex-direction: column;}
+        .starttime      {   width: 100%;  height: 50%; padding-left: 2%; border-bottom: 1px solid #4fa09c; box-sizing: border-box; display: flex; align-items: center;}
+        .endtime        {   width: 100%;  height: 50%; padding-left: 2%; display: flex; align-items: center;}
+        .button         {   width: 20%; color:#fefbf9; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+
+        #containermain  {   background-color: #fefbf9;	border: 10px ridge #125368; }
+        #titleHolder    {   height: 10%; display:flex; border-bottom: 5px solid 	#4fa09c; }
+        #races          { 	height: 74%; display:flex; flex-direction: column; overflow-x: hidden; overflow-y: auto;}
+        div#races > div:nth-of-type(odd) {  background: #ddefee; }
+        #functions      {	  height: 15%; text-align: center; border-top: 5px solid 	#4fa09c; display:flex; flex-direction: row; align-items: center; justify-content: center;}
+        #title          {   padding-left: 2%; width: 85%; top: 50%; display: flex; align-items: center; text-align: left; font-size: 30px;}
+        #backbutton     {   width: 15%; background-color: #4fa09c; border: 5px outset #125368; }
+        #viewrace       {   opacity: 0.5; margin-right: 1%; height: 80%; background-color: #fb3e2e; border: 5px outset #6a1a1a; }
+        #createrace     {   margin-right: 17%; height: 80%; background-color: #fb3e2e; border: 5px outset #6a1a1a; }
+        #editrace       {   opacity: 0.5; margin-right: 2%; margin-right: 1%;height: 80%; background-color: #fb3e2e; border: 5px outset #6a1a1a; }
+        #deleterace     {   opacity: 0.5; height: 80%; background-color: #fb3e2e; border: 5px outset #6a1a1a; }
+
+
+        </style>
+		    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="containermain" class="container">
+        	<div id="titleHolder">
+            <div id="title">
+              Mijn opgezette races
+            </div>
+            <div id="backbutton" class="button">
+              Terug
+            </div>
+       		</div>
+          <div id="races">
+          </div>
+          <div id="functions">
+            <div id="viewrace" class="button">
+              Bekijk race
+            </div>
+            <div id="createrace" class="button">
+              Nieuwe race
+            </div>
+            <div id="editrace" class="button">
+              Aanpassen
+            </div>
+            <div id="deleterace" class="button">
+              Delete race
+            </div>
+          </div>
+        </div>
+    </body>
+    <script>
+      var counter=0;
+      var selectedrace;
+
+
+      $("#backbutton").click(function(){
+
+        var titlediv = $("<div class='horecatitle'></div>");
+        titlediv.append("PINTEN ATTEN NIE NORMAEL");
+        var participantdiv = $("<div class='participantcount'></div>");
+        participantdiv.append("8 deelnemers");
+        var startdiv = $("<div class='starttime'></div>");
+        startdiv.append("starttijd: 15:00");
+        var enddiv = $("<div class='endtime'></div>");
+        enddiv.append("eindtijd: 19:00");
+        var timeholddiv = $("<div class='timeholder'></div>");
+        timeholddiv.append(startdiv);
+        timeholddiv.append(enddiv);
+        var racediv = $("<div id='test"+counter+"' class='race'></div>");
+        racediv.append(titlediv);
+        racediv.append(participantdiv);
+        racediv.append(timeholddiv);
+        racediv.click(function(){
+          if(selectedrace == null){
+            selectedrace = racediv;
+            console.log(selectedrace);
+            racediv.css('opacity', '0.5');
+            racediv.css('border', '2px');
+            racediv.css('border-color', '#125368');
+            racediv.css('border-style', 'solid');
+          } else if(selectedrace == racediv){
+            selectedrace.css('opacity', '1');
+            selectedrace.css('border', '0px');
+            selectedrace.css('border-color', '#125368');
+            selectedrace.css('border-style', 'solid');
+            selectedrace = null;
+          } else{
+            selectedrace.css('opacity', '1');
+            selectedrace.css('border', '0px');
+            selectedrace.css('border-color', '#125368');
+            selectedrace.css('border-style', 'solid');
+            selectedrace = racediv;
+            console.log(selectedrace);
+            racediv.css('opacity', '0.5');
+            racediv.css('border', '2px');
+            racediv.css('border-color', '#125368');
+            racediv.css('border-style', 'solid');
+          }
+          if(selectedrace != null){
+            $("#viewrace").css('opacity', 1);
+            $("#editrace").css('opacity', 1);
+            $("#deleterace").css('opacity', 1);
+          } else{
+            $("#viewrace").css('opacity', 0.5);
+            $("#editrace").css('opacity', 0.5);
+            $("#deleterace").css('opacity', 0.5);
+          }
+
+        })
+        console.log("banana");
+      $("#races").append(racediv);
+      counter++;
+      });
+    </script>
+</html>
