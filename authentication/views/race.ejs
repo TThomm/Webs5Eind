@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <style>
+        body            {   font-family: 'Raleway', sans-serif; }
+
+
+        .container      {  	width: 90vw; height: 90vh; margin: 0 auto; text-align: left; flex-direction: column; }
+        .race           {   cursor: pointer; transition: opacity 0.2s, border 0.2s; box-sizing: border-box; border: 0px solid #125368; border-style: solid; width: 100%; flex-shrink: 0; height: 10%; background-color: #fefbf9; display:flex; flex-direction: row;}
+        .button         {   cursor: pointer; width: 20%; color:#fefbf9; display: flex; align-items: center; justify-content: center; box-sizing: border-box; }
+
+        #containermain  {   background-color: #fefbf9;	border: 10px ridge #125368; }
+        #titleHolder    {   height: 10%; display:flex; border-bottom: 5px solid 	#4fa09c; }
+        #race          { 	height: 90%; display:flex; flex-direction: column; }
+        div#caves > div:nth-of-type(odd) {  background: #ddefee; }
+        #title          {   padding-left: 2%; width: 85%; top: 50%; display: flex; align-items: center; text-align: left; font-size: 30px;}
+        #backbutton     {   width: 15%; background-color: #4fa09c; border: 5px outset #125368; }
+      	#racename				{		width: 100%; height: 10%;  display: flex; align-items: center; border-bottom: 2px solid #4fa09c; box-sizing: border-box; padding-left: 1%;}
+				#racetime				{		width: 100%; height: 10%;  display: flex; align-items: center; border-bottom: 2px solid #4fa09c; box-sizing: border-box;  padding-left: 1%;}
+				#deelnemers			{		width: 100%; height: 10%;  display: flex; align-items: center; border-bottom: 2px solid #4fa09c; box-sizing: border-box;  padding-left: 1%;}
+				#caves					{		width: 100%; height: 70%; overflow-x: hidden; overflow-y: auto;}
+				.cafe						{		width: 100%; height: 10%;  display: flex; align-items: center; padding-left: 1%; }
+
+
+        </style>
+		    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="containermain" class="container">
+        	<div id="titleHolder">
+            <div id="title">
+              Kankerharde sprintrace
+            </div>
+            <div id="backbutton" class="button">
+              Terug
+            </div>
+       		</div>
+          <div id="race">
+						<div id="racename">
+							Naam: kankerharde sprintrace
+						</div>
+						<div id="racetime">
+							 startijd: 19:00 | eindtijd: 22:00
+						</div>
+						<div id="deelnemers">
+							Aantal deelnemers: 6
+						</div>
+						<div id="caves">
+							<div class="cafe">
+								cafe de sloebert
+							</div>
+
+						</div>
+          </div>
+        </div>
+    </body>
+</html>
