@@ -5,8 +5,8 @@ var request = require('request');
 var Cafe = require('../app/models/cafe');
 
 router.get('/', isLoggedIn, function (req, res) {
-    
-    
+
+
     //request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDguC3IklgL1LwV828atdW1lJqbkcRQhpU&location=51.72512,%205.30323&radius=2000&type=cafe', function (error, response, body) {
     //    console.log('error:', error); // Print the error if one occurred
     //    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -20,7 +20,7 @@ router.get('/', isLoggedIn, function (req, res) {
 router.get('/create', isLoggedIn, function (req, res) {
 
 
-    
+
 
 
     res.render('coordinates.ejs');
@@ -34,7 +34,7 @@ router.post('/create', isLoggedIn, function (req, res) {
     var caves;
 
     var call = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyDguC3IklgL1LwV828atdW1lJqbkcRQhpU&location=" + latitude + "," + longitude + "&radius=2000&type=cafe";
- 
+
     request(call, function (error, response, body) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -47,16 +47,16 @@ router.post('/create', isLoggedIn, function (req, res) {
         });
     });
 
-    
 
-    
+
+
 });
 
 
 
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
@@ -103,4 +103,3 @@ function getCafes(json) {
 
 
 module.exports = router;
-
