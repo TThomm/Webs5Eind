@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<title></title>
@@ -6,9 +6,7 @@
     <style>
       body              {   font-family: 'Raleway', sans-serif; }
       form              {    width: 100%; height: 100%; display: flex; align-items: center; flex-direction: column;}
-
       .cave             {    width: 100%; height: 10%;flex-direction: row; display: flex; align-items: center; border: 1px solid #6a1a1a; box-sizing: border-box; flex-shrink: 0;}
-
       #holder           {   width: 90vw; height: 90vh; display: flex; align-items: center; background-color: #4fa09c; border: 10px solid #125368; margin: 0 auto; flex-direction: column; }
       #nameholder       {   height: 10%; width: 60%; flex-direction: column;  color: #fefbf9; }
       #starttimeholder  {   height: 10%; width: 60%; flex-direction: column;  color: #fefbf9;}
@@ -23,7 +21,6 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
-
 input[type=submit] {
     width: 100%;
     background-color: #6a1a1a;;
@@ -34,17 +31,15 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
 }
-
 input[type=submit]:hover {
     background-color: #6a1a1a;;
 }
-
     </style>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	</head>
 	<body>
     <div id="holder">
-		<form action="/races/raceCreated", method = "POST">
+		<form action="/races", method = "POST">
 			<div id="nameholder">
 				<label for = "name"> Name:
 				</label>

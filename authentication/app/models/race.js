@@ -4,19 +4,30 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 // define the schema for our user model
-var raceSchema = mongoose.Schema({
+var raceSchema = new mongoose.Schema({
 
-    race: {
         id: String,
-        placeid: String,
+        name: String,
+        owner: { type: mongoose.Schema.Types.ObjectId, required: false, ref: 'user' /* Pseudo-joins */ },
         starttime: String,
         endtime: String,
-        users: [{ type: String, required: true, ref: 'user' /* Pseudo-joins */ }],
-        cafes: [{ type: String, required: false, ref: 'cafe' /* Pseudo-joins */ }]
-    }
+        participants: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'user' /* Pseudo-joins */ }],
+        cafes: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'cafe' }]
+    
 
+},
+{
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
 });
 
+//Race
+//.findOne({ firstname: 'Aaron' })
+//.populate('eventsAttended') // only works if we pushed refs to person.eventsAttended
+//.exec(function (err, person) {
+//    if (err) return handleError(err);
+//    console.log(person);
+//});
 // methods ======================
 // generating a hash
 
@@ -24,4 +35,4 @@ var raceSchema = mongoose.Schema({
 
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('Cafe', cafeSchema);
+module.exports = mongoose.model('Race', raceSchema);

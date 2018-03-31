@@ -43,6 +43,14 @@
             </div>
        		</div>
           <div id="races">
+            <% for(var i=0; i < races.length; i++) { %>
+            
+              <label>
+                <%= races[i].name %>
+              </label>
+             
+            
+            <% } %>
           </div>
           <div id="functions">
             <div id="viewrace" class="button">

@@ -4,11 +4,10 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 // define the schema for our user model
-var cafeSchema = mongoose.Schema({
+var cafeSchema = new mongoose.Schema({
     id: String,
     name: String,
     placeid: String
-
 });
 
 // methods ======================
