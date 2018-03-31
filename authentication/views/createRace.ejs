@@ -67,12 +67,14 @@ input[type=submit]:hover {
 			</div>
 			<br>
 			<div id="caves">
-				<% cafes.forEach(function(cafe) { %>
-					<div class="cave">
-						<input type="checkbox" value="<%= cafe %>" name="cafes" />
-	          <label><%= cafe.name %></label>
-	        </div>
-					<% }); %>
+				<div>
+            <% for(var i=0; i < placeids.length; i++) { %>
+							<div class="cave">
+	   						<label><%= names[i] %></label>
+   							<input type="checkbox" value="<%= placeids[i] %>" name="placeid" />
+							</div>
+						<% } %>
+        </div>
 			</div>
 			<br>
 			<button type = "submit"> Create Race
