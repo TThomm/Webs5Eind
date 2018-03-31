@@ -62,7 +62,6 @@
         </div>
     </body>
     <script>
-      var counter=0;
       var selectedrace;
 
 
@@ -80,37 +79,34 @@
           var timeholddiv = $("<div class='timeholder'></div>");
           timeholddiv.append(startdiv);
           timeholddiv.append(enddiv);
-          var racediv = $("<div id='<%= races[i].id %>' class='race'></div>");
-          console.log("<%= races[i].name %>");
-          console.log("<%= races[i].id %>");
+          var racediv = $("<div id='<%= races[i]._id %>' class='race'></div>");
           racediv.append(titlediv);
           racediv.append(participantdiv);
           racediv.append(timeholddiv);
           racediv.click(function(){
             if(selectedrace == null){
-              selectedrace = racediv;
+              selectedrace = "<%= races[i]._id %>";
+              $("#<%= races[i]._id %>").css('opacity', '0.5');
+              $("#<%= races[i]._id %>").css('border', '2px');
+              $("#<%= races[i]._id %>").css('border-color', '#125368');
+              $("#<%= races[i]._id %>").css('border-style', 'solid');
+            } else if(selectedrace == "<%= races[i]._id %>"){
               console.log(selectedrace);
-              racediv.css('opacity', '0.5');
-              racediv.css('border', '2px');
-              racediv.css('border-color', '#125368');
-              racediv.css('border-style', 'solid');
-            } else if(selectedrace == racediv){
-              selectedrace.css('opacity', '1');
-              selectedrace.css('border', '0px');
-              selectedrace.css('border-color', '#125368');
-              selectedrace.css('border-style', 'solid');
+              $("#" + selectedrace).css('opacity', '1');
+              $("#" + selectedrace).css('border', '0px');
+              $("#" + selectedrace).css('border-color', '#125368');
+              $("#" + selectedrace).css('border-style', 'solid');
               selectedrace = null;
             } else{
-              selectedrace.css('opacity', '1');
-              selectedrace.css('border', '0px');
-              selectedrace.css('border-color', '#125368');
-              selectedrace.css('border-style', 'solid');
-              selectedrace = racediv;
-              console.log(selectedrace);
-              racediv.css('opacity', '0.5');
-              racediv.css('border', '2px');
-              racediv.css('border-color', '#125368');
-              racediv.css('border-style', 'solid');
+              $("#" + selectedrace).css('opacity', '1');
+              $("#" + selectedrace).css('border', '0px');
+              $("#" + selectedrace).css('border-color', '#125368');
+              $("#" + selectedrace).css('border-style', 'solid');
+              selectedrace = "<%= races[i]._id %>";
+              $("#<%= races[i]._id %>").css('opacity', '0.5');
+              $("#<%= races[i]._id %>").css('border', '2px');
+              $("#<%= races[i]._id %>").css('border-color', '#125368');
+              $("#<%= races[i]._id %>").css('border-style', 'solid');
             }
             if(selectedrace != null){
               $("#viewrace").css('opacity', 1);
