@@ -22,7 +22,6 @@ router.get('/', isLoggedIn,
         var allRaces;
         result.exec((err, data) => {
             allRaces = data;
-            console.log(allRaces);
 
             res.render('races.ejs',
                 {
@@ -35,13 +34,46 @@ router.get('/', isLoggedIn,
 
 router.get('/create', isLoggedIn,
     function (req, res) {
-
-
-    
-
-
     res.render('coordinates.ejs');
-});
+    });
+
+
+
+router.post('/editRace', isLoggedIn,
+    function (req, res) {
+        var raceId = req.body.edit;
+        var race;
+        var cafes;
+        Race.findOne({_id: raceId}).exec((err, data) => {
+            race = data;
+            cafeNames = [];
+            cafePlaceids = [];
+            for (i = 0; i < race.cafes.length; i++) {
+                Cafe.findOne({ _id: race.cafes[i] }).exec((err, data2) => {
+                    cafe = data2;
+                    cafeNames[i] = cafe.name;
+                    cafePlaceids[i] = cafe.placeid;
+
+                    if (i == race.cafes.length) {
+                        res.render('editRace.ejs',
+                {
+                    race: race,
+                    cafenames: cafeNames,
+                    cafeplaceids: cafePlaceids,
+                    user: user
+                });
+                    }
+                
+                    
+                });
+            }
+            
+            
+            
+            
+        });
+        
+    });
 
 router.post('/create', isLoggedIn,
     function (req, res) {

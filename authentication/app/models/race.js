@@ -8,12 +8,15 @@ var raceSchema = new mongoose.Schema({
 
         id: String,
         name: String,
-        owner: { type: mongoose.Schema.Types.ObjectId, required: false, ref: 'user' /* Pseudo-joins */ },
+        owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'user' /* Pseudo-joins */ },
         starttime: String,
         endtime: String,
         participants: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'user' /* Pseudo-joins */ }],
         cafes: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'cafe' }]
-    
+    //    cafes: [{
+    //    cafe: { type: mongoose.Schema.Types.ObjectId, required: false, ref: 'cafe' },
+    //checked: [{ type: mongoose.Schema.Types.ObjectId, required: false, ref: 'user' /* Pseudo-joins */ }]
+    //}]
 
 },
 {
